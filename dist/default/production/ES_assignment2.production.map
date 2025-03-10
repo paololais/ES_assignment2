@@ -147,7 +147,7 @@ External Symbols in Program Memory (by address):
                   0x00023c                  __psv_init
                   0x000248                  __data_init
                   0x000248                  __data_init_extended
-                  0x0002fa                  __T1Interrupt
+                  0x0002fa                  __T2Interrupt
                   0x000330                  __DefaultInterrupt
                   0x000336                  ___fixsfsi
                   0x000378                  ___floatsisf
@@ -155,8 +155,8 @@ External Symbols in Program Memory (by address):
                   0x0003a8                  ___divsf3
                   0x0003a8                  ___divsf3x
                   0x00053a                  __sdivf
-                  0x000566                  ___mulsf3
                   0x000566                  ___mulsf3x
+                  0x000566                  ___mulsf3
                   0x000672                  __dnrmpackf
                   0x0006c6                  __unpackdnrmf
                   0x000724                  __typef
@@ -173,7 +173,7 @@ External Symbols in Program Memory (by address):
 External Symbols in Program Memory (by name):
 
                   0x000330                  __DefaultInterrupt
-                  0x0002fa                  __T1Interrupt
+                  0x0002fa                  __T2Interrupt
                   0x0003a8                  ___divsf3
                   0x0003a8                  ___divsf3x
                   0x000336                  ___fixsfsi
@@ -261,7 +261,7 @@ LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libfx-elf.a
  *(.handle)
  *(.isr*)
  .isr.text        0x0002fa         0x36 build/default/production/main.o
-                  0x0002fa                  __T1Interrupt
+                  0x0002fa                  __T2Interrupt
  .isr             0x000330          0x4 default_isr
                   0x000330                  __DefaultInterrupt
  *(.libc)
@@ -3206,10 +3206,10 @@ __c30_signature
  .nbss              0x1002          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(errno.EP_o)
                     0x1002                  _errno
 
-.ivt._T1Interrupt
-                  0x00001a          0x2
- .ivt._T1Interrupt
-                  0x00001a          0x2 build/default/production/main.o
+.ivt._T2Interrupt
+                  0x000022          0x2
+ .ivt._T2Interrupt
+                  0x000022          0x2 build/default/production/main.o
 
 .text             0x000940        0x132
  .text            0x000940         0xe8 build/default/production/timer.o
