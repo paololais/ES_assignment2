@@ -15,10 +15,10 @@ int i = 0;
 void __attribute__((__interrupt__, __auto_psv__)) _T2Interrupt() {
   IFS0bits.T2IF = 0; // reset interrupt flag
   i = i + 1;
-        if (i == 2){
+        if (i == 5){
             LATGbits.LATG9 = 1;
         }
-        else if (i == 5){
+        else if (i == 10){
             i = 0;
             LATGbits.LATG9 = 0;
         }
@@ -35,7 +35,7 @@ int main(void) {
     LATGbits.LATG9 = 0;
     
     tmr_setup_period(TIMER1, 200);
-    tmr_setup_period(TIMER2, 200);
+    tmr_setup_period(TIMER2, 100);
     int status = 0;
     
     //IEC0bits.T1IE = 1;
