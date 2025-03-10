@@ -20,6 +20,7 @@ void tmr_setup_period(int timer, int ms){
         TMR1 = 0; // reset timer counter
         T1CONbits.TCKPS = 3; // prescaler 1:256
         IFS0bits.T1IF = 0;
+        IEC0bits.T1IE = 1; // inable interrupt
         T1CONbits.TON = 1; // starts the timer!
     }
     
@@ -30,6 +31,7 @@ void tmr_setup_period(int timer, int ms){
         TMR2 = 0; // reset timer counter
         T2CONbits.TCKPS = 3; // prescaler 1:256
         IFS0bits.T2IF = 0;
+        //IEC0bits.T2IE = 1; // inable interrupt
         T2CONbits.TON = 1; // starts the timer!
     }   
 }

@@ -11,8 +11,8 @@
 
 int i = 0;
 
-void __attribute__((__interrupt__, __auto_psv__)) _INT0Interrupt() {
-  IFS0bits.INT0IF = 0; // reset interrupt flag
+void __attribute__((__interrupt__, __auto_psv__)) _T1Interrupt() {
+  IFS0bits.T1IF = 0; // reset interrupt flag
   i = i + 1;
         if (i == 2){
             LATGbits.LATG9 = 1;
@@ -34,9 +34,10 @@ int main(void) {
     LATGbits.LATG9 = 0;
     
     tmr_setup_period(TIMER1, 200);
+    tmr_setup_period(TIMER2, 200);
     int status = 0;
     
-    IEC0bits.INT0IE = 1;
+    //IEC0bits.T1IE = 1;
  
     while (1) {
         if(status == 0){
@@ -46,8 +47,8 @@ int main(void) {
             LATAbits.LATA0 = 0;
             status = 0;
         }
-        IFS0bits.INT0IF = 1;
-        tmr_wait_period(TIMER1);
+        //IFS0bits.INT0IF = 1;
+        tmr_wait_period(TIMER2);
     }
     return 0;
 }
