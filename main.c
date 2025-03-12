@@ -98,7 +98,7 @@ int main(void) {
       
     tmr_setup_period(TIMER1, 200);
     
-    volatile int status = 0;
+    int status = 0;
   
     while (1) {
         
