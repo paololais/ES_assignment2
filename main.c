@@ -9,7 +9,7 @@
 #include "xc.h"
 #include "timer.h"
 
-int i = 0;
+//int i = 0;
 
 void __attribute__((__interrupt__, __auto_psv__)) _T2Interrupt(){
   IFS0bits.T2IF = 0; 
@@ -19,13 +19,13 @@ void __attribute__((__interrupt__, __auto_psv__)) _T2Interrupt(){
 
   if (PORTEbits.RE9 == 1) {
    //toggle led
-    LATGbits.LATG9 =! LATGbits.LATG9;
+    LATGbits.LATG9 = !LATGbits.LATG9;
 
   }
 
 }
 void __attribute__((__interrupt__, __auto_psv__)) _INT1Interrupt(){
-  IFS0bits.T1IF = 0;
+  IFS1bits.INT1IF = 0;
   IEC0bits.T2IE = 1;
   tmr_setup_period(TIMER2, 10);
 }
@@ -98,17 +98,20 @@ int main(void) {
       
     tmr_setup_period(TIMER1, 200);
     
-    int status = 0;
-    
- 
+    volatile int status = 0;
+  
     while (1) {
+        
         if(status == 0){
-            LATAbits.LATA9 = 1;
+            LATAbits.LATA0 = 1;
             status = 1;
         } else{
-            LATAbits.LATA9 = 0;
+            LATAbits.LATA0 = 0;
             status = 0;
         }
+        
+        //LATAbits.LATA0 = status; // Accendi/spegni il LED1 su RA0
+        //status = !status;
         
         tmr_wait_period(TIMER1);
     }
