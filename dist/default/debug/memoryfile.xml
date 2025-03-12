@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project>
-  <executable name="dist/default/production/ES_assignment2.production.elf">
+  <executable name="dist/default/debug/ES_assignment2.debug.elf">
     <memory name="data">
       <units>bytes</units>
       <length>53248</length>

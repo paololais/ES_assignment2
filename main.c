@@ -9,10 +9,28 @@
 #include "xc.h"
 #include "timer.h"
 
-// esercizio 1
 int i = 0;
 
-void __attribute__((__interrupt__, __auto_psv__)) _T2Interrupt() {
+void __attribute__((__interrupt__, __auto_psv__)) _T2Interrupt(){
+  IFS0bits.T2IF = 0; 
+  IEC0bits.T2IE = 0;
+  T2CONbits.TON = 0; 
+  IEC1bits.INT1IE = 1;
+
+  if (PORTEbits.RE9 == 1) {
+   //toggle led
+    LATGbits.LATG9 =! LATGbits.LATG9;
+
+  }
+
+}
+void __attribute__((__interrupt__, __auto_psv__)) _INT1Interrupt(){
+  IFS0bits.T1IF = 0;
+  IEC0bits.T2IE = 1;
+  tmr_setup_period(TIMER2, 10);
+}
+
+/*void __attribute__((__interrupt__, __auto_psv__)) _T2Interrupt() {
     IFS0bits.T2IF = 0; // reset interrupt flag
     i = i + 1;
     if (i == 5) {
@@ -22,7 +40,9 @@ void __attribute__((__interrupt__, __auto_psv__)) _T2Interrupt() {
         LATGbits.LATG9 = 0;
     }
 }
+*/
 
+/*
 int main(void) {
     // initialization code
     ANSELA = ANSELB = ANSELC = ANSELD = ANSELE = ANSELG = 0x0000;
@@ -51,12 +71,14 @@ int main(void) {
     }
     return 0;
 }
+*/
 
-/*
-void __attribute__((__interrupt__, __auto_psv__)) _INT1Interrupt() {
+//ESERCIZIO 1 ASSIGNMENT2
+/* void __attribute__((__interrupt__, __auto_psv__)) _INT1Interrupt() {
   IFS1bits.INT1IF = 0; // reset interrupt flag
   
 }
+*/
 
 int main(void) {
     // initialization code
@@ -92,5 +114,3 @@ int main(void) {
     }
     return 0;
 }
- * 
- * */
